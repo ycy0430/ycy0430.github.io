@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>初识HTTP | Cany--blog</title><meta name="description" content="初识HTTP 参考文档：https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;HTTP   HTTP即超文本传输协议，属于TCP协议的应用层，是一种客户端（浏览器）与服务器之间交换信息的规定，一次流程为建立TCP连接-客户端发送请求（request）-服务器收到后发送响应信息（response）-断开连接。  传输之间会存在一些代理（缓存、过滤、认证、负载均衡、"><meta name="keywords" content="Vue,面试,CSDN,ES6,React,前端"><meta name="author" content="无欲"><meta name="copyright" content="无欲"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/posts/46667/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="preconnect" href="//zz.bdstatic.com"/><meta property="og:type" content="article"><meta property="og:title" content="初识HTTP"><meta property="og:url" content="http://yoursite.com/posts/46667/"><meta property="og:site_name" content="Cany--blog"><meta property="og:description" content="初识HTTP 参考文档：https:&#x2F;&#x2F;developer.mozilla.org&#x2F;zh-CN&#x2F;docs&#x2F;Web&#x2F;HTTP   HTTP即超文本传输协议，属于TCP协议的应用层，是一种客户端（浏览器）与服务器之间交换信息的规定，一次流程为建立TCP连接-客户端发送请求（request）-服务器收到后发送响应信息（response）-断开连接。  传输之间会存在一些代理（缓存、过滤、认证、负载均衡、"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-07-31T03:35:55.000Z"><meta property="article:modified_time" content="2020-07-31T03:58:03.952Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":500,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: true,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-31 11:58:03'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@master/Hexo/css/flink.min.css"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/img/touxiang.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fab fa-xbox"></i><span> 聚宝盒</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#初识HTTP"><span class="toc-number">1.</span> <span class="toc-text">初识HTTP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#典型的-HTTP-会话"><span class="toc-number">2.</span> <span class="toc-text">典型的 HTTP 会话</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求方法"><span class="toc-number">2.1.</span> <span class="toc-text">请求方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求报文示例"><span class="toc-number">2.2.</span> <span class="toc-text">请求报文示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应报文示例"><span class="toc-number">2.3.</span> <span class="toc-text">响应报文示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#状态码"><span class="toc-number">2.4.</span> <span class="toc-text">状态码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存-cache"><span class="toc-number">3.</span> <span class="toc-text">缓存 cache</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#调用流程图"><span class="toc-number">3.1.</span> <span class="toc-text">调用流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-control-头"><span class="toc-number">3.2.</span> <span class="toc-text">Cache-control 头</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">4.</span> <span class="toc-text">Cookie</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Cookie"><span class="toc-number">4.1.</span> <span class="toc-text">创建Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义-Cookie-的生命周期"><span class="toc-number">4.2.</span> <span class="toc-text">定义 Cookie 的生命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制访问-Cookie"><span class="toc-number">4.3.</span> <span class="toc-text">限制访问 Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cookie-的作用域"><span class="toc-number">4.4.</span> <span class="toc-text">Cookie 的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JavaScript访问-Cookie"><span class="toc-number">4.5.</span> <span class="toc-text">JavaScript访问 Cookie</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP访问控制（CORS）"><span class="toc-number">5.</span> <span class="toc-text">HTTP访问控制（CORS）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CORS概念"><span class="toc-number">5.1.</span> <span class="toc-text">CORS概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简单请求与非简单请求"><span class="toc-number">5.2.</span> <span class="toc-text">简单请求与非简单请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求流程"><span class="toc-number">5.3.</span> <span class="toc-text">请求流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#简单请求"><span class="toc-number">5.3.1.</span> <span class="toc-text">简单请求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#非简单请求"><span class="toc-number">5.3.2.</span> <span class="toc-text">非简单请求</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后感"><span class="toc-number">6.</span> <span class="toc-text">后感</span></a></li></ol></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">Cany--blog</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fas fa-list"></i><span> 媒体</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/bangumis/"><i class="fa-fw fab fa-youtube"></i><span> 番剧</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa fa-film"></i><span> 电影</span></a></li><li><a class="site-page" href="/books/"><i class="fa-fw fas fa-book"></i><span> 书单</span></a></li><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/box/"><i class="fa-fw fab fa-xbox"></i><span> 聚宝盒</span></a></div><div class="menus_item"><a class="site-page" href="/talk/"><i class="fa-fw far fa-comment"></i><span> 微语</span></a></div><div class="menus_item"><a class="site-page"><i class="fa-fw fa fa-heartbeat"></i><span> 清单</span><i class="fas fa-chevron-down menus-expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/gallery/"><i class="fa-fw far fa-image"></i><span> 相册</span></a></li><li><a class="site-page" href="/home/"><i class="fa-fw fab fa-phoenix-framework"></i><span> 主页</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/contact/"><i class="fa-fw far fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">初识HTTP</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-31 11:35:55"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-31</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-31 11:58:03"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-31</span></time></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta__icon"></i><span>阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="初识HTTP"><a href="#初识HTTP" class="headerlink" title="初识HTTP"></a>初识HTTP</h2><blockquote>
+<p>参考文档：<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/HTTP</a></p>
+</blockquote>
+<ul>
+<li><p>HTTP即超文本传输协议，属于TCP协议的应用层，是一种客户端（浏览器）与服务器之间交换信息的规定，一次流程为建立TCP连接-客户端发送<strong>请求</strong>（request）-服务器收到后发送响应信息（response）-断开连接。</p>
+</li>
+<li><p>传输之间会存在一些代理（<strong>缓存</strong>、过滤、认证、负载均衡、日志记录）。</p>
+</li>
+<li><p>HTTP本质是无状态的，不同请求之间没有联系，HTTP又具有可扩展性，利用头部扩展HTTP <strong>cookies</strong>可以创建有状态会话，用来关联每次的请求。</p>
+<br/>
+</li>
+</ul>
+<hr>
+<h2 id="典型的-HTTP-会话"><a href="#典型的-HTTP-会话" class="headerlink" title="典型的 HTTP 会话"></a>典型的 HTTP 会话</h2><p><strong>1. 客户端建立一条 TCP 连接。</strong><br><strong>2. 客户端发送请求并等待应答。</strong><br><strong>3. 服务器处理请求并送回应答，回应包括一个状态码和对应的数据。</strong></p>
+<p>从 HTTP/1.1 开始，连接在完成第三阶段后不再关闭，客户端可以再次发起新的请求。这意味着第二步和第三步可以连续进行数次。</p>
+<h3 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h3><ul>
+<li>1.0：GET、HEAD、POST  </li>
+<li>2.0新增：PUT、DELETE、CONNECT、OPTIONS、TRACE、PATCH</li>
+<li>常用：<br>GET：一般用来请求指定资源，请求内容直接附在url之后，并且受url字节限制。<br>POST：提交到指定资源，常用在html表单提交，无字节限制，更安全。<br>HEAD:与GET相同，但只返回报头，不返回主体文档。<br>DELETE：删除指定的资源。</li>
+</ul>
+<h3 id="请求报文示例"><a href="#请求报文示例" class="headerlink" title="请求报文示例"></a>请求报文示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST<span class="comment">&lt;!--请求方法--&gt;</span> /contact_form.php<span class="comment">&lt;!--不含协议和域名的绝对路径--&gt;</span> HTTP/1.1<span class="comment">&lt;!--版本--&gt;</span>  </span><br><span class="line">Host: developer.mozilla.org <span class="comment">&lt;!--下至空行都是首部--&gt;</span> </span><br><span class="line">Content-Length: 64</span><br><span class="line">Content-Type: application/x-www-form-urlencoded</span><br><span class="line"><span class="comment">&lt;!--首部与内容块之间必须有空行--&gt;</span> </span><br><span class="line">name=Joe%20User&amp;request=Send%20me%20one%20of%20your%20catalogue<span class="comment">&lt;!--内容块--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="响应报文示例"><a href="#响应报文示例" class="headerlink" title="响应报文示例"></a>响应报文示例</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1<span class="comment">&lt;!--版本号--&gt;</span>  200<span class="comment">&lt;!--状态码--&gt;</span>  OK<span class="comment">&lt;!--可读状态描述--&gt;</span> </span><br><span class="line">Date: Sat, 09 Oct 2010 14:28:02 GMT <span class="comment">&lt;!--下至空行都是首部--&gt;</span> </span><br><span class="line">Server: Apache</span><br><span class="line">Last-Modified: Tue, 01 Dec 2009 20:18:22 GMT</span><br><span class="line">ETag: "51142bc1-7449-479b075b2891b"</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: 29769</span><br><span class="line">Content-Type: text/html</span><br><span class="line"></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>... &gt;</span><span class="comment">&lt;!--响应的数据块(网页HTML源代码)--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><table>
+<thead>
+<tr>
+<th>开头</th>
+<th align="right">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1XX</td>
+<td align="right">表示服务器收到请求信息,需要请求者继续操作</td>
+</tr>
+<tr>
+<td>2XX</td>
+<td align="right">表示请求成功, 被服务器接收并处理</td>
+</tr>
+<tr>
+<td>3XX</td>
+<td align="right">表示请求被重定向, 需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td align="right">表示客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5XX</td>
+<td align="right">表示客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+</tbody></table>
+<br/>
+------------
+
+<h2 id="缓存-cache"><a href="#缓存-cache" class="headerlink" title="缓存 cache"></a>缓存 cache</h2><p>HTTP缓存就是为了挺高网站效率，减少等待时间和网络流量，将资源保存本地并复用的行为。</p>
+<h3 id="调用流程图"><a href="#调用流程图" class="headerlink" title="调用流程图"></a>调用流程图</h3><p><img src= "/img/loading.gif" data-src="https://s1.ax1x.com/2020/07/31/aMBbYq.png" alt="缓存调用流程图" title="缓存调用流程图"></p>
+<h3 id="Cache-control-头"><a href="#Cache-control-头" class="headerlink" title="Cache-control 头"></a>Cache-control 头</h3><p>Cache-control可以控制缓存策略，共有或私有、缓存超时时长等。</p>
+<ol>
+<li><p>严格不使用缓存</p>
+<pre><code>Cache-Control：no-store</code></pre></li>
+</ol>
+<ul>
+<li>每次客户端请求都会下载完整的响应请求，不保存缓存。</li>
+</ul>
+<ol start="2">
+<li><p>允许客户终端缓存，但每次使用都需要确认。</p>
+<pre><code>Cache-Control：no-cache
+ETag：“ycy0430”</code></pre></li>
+</ol>
+<ul>
+<li>并不是不缓存，而是带有本地的验证字段，服务器判断缓存是否过期从而决定是否使用本地缓存。</li>
+<li>ETag是一个对中间人不透明的强校验器，来确定响应数据是否要更新。</li>
+</ul>
+<ol start="3">
+<li>允许客户终端短时间缓存<pre><code>Cache-Control：private max-age=600
+ETag：“ycy0430”</code></pre></li>
+</ol>
+<ul>
+<li><code>private</code>表示该请求是属于私人的，中间人不能缓存，如果指定<code>public</code>，则中间人也能缓存一些带有HTTP验证信息（帐号密码）的页面。</li>
+<li>过期机制<code>max-age=&lt;seconds&gt;</code>用来表示该缓存距离上次请求的时间，对于一些长时间不变的静态资源如css、js 我们可以设置长时间。</li>
+<li>验证指令<code>must-revalidate</code> 表示在使用一个陈旧缓存时，先判断他是否过期，过期的话将不使用。</li>
+<li>我们需要更新为过期的资源怎么办？<code>revving</code>技术让一些低频使用的静态文件后面加上版本号，只需在高频的html文件修改入口即可。  <br/>
+</li>
+</ul>
+<hr>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p><code>Cookie</code>是服务器发送到本地的一个数据块，常用在以下几个方面：</p>
+<ol>
+<li>会话状态管理（如用户登录状态、购物车、游戏分数或其它需要记录的信息）</li>
+<li>个性化设置（如用户自定义设置、主题等）</li>
+<li>浏览器行为跟踪（如跟踪分析用户行为等）</li>
+</ol>
+<h3 id="创建Cookie"><a href="#创建Cookie" class="headerlink" title="创建Cookie"></a>创建Cookie</h3><pre><code>Set-Cookie: &lt;cookie名&gt;=&lt;cookie值&gt;</code></pre><h3 id="定义-Cookie-的生命周期"><a href="#定义-Cookie-的生命周期" class="headerlink" title="定义 Cookie 的生命周期"></a>定义 Cookie 的生命周期</h3><pre><code>Set-Cookie: id=ycycookie; Expires=Wed, 21 Oct 2015 07:28:00 GMT;//过期时间
+Set-Cookie: id=ycycookie; Max-Age：600；//有效期</code></pre><h3 id="限制访问-Cookie"><a href="#限制访问-Cookie" class="headerlink" title="限制访问 Cookie"></a>限制访问 Cookie</h3><p>确保cookie能安全发送，有以下两个限制属性<br><code>Secure</code>限制只能通过HTTPS协议传输cookie。</p>
+<p><code>HttpOnly</code> JavaScript无法访问、仅作用于服务器。</p>
+<pre><code>Set-Cookie: id=ycyCookie; Expires=Wed, 21 Oct 2015 07:28:00 GMT; Secure; HttpOnly</code></pre><h3 id="Cookie-的作用域"><a href="#Cookie-的作用域" class="headerlink" title="Cookie 的作用域"></a>Cookie 的作用域</h3><p><code>Domain</code> 指定了哪些主机可以接受 Cookie<br>例如，如果设置 Domain=mozilla.org，则 Cookie 也包含在子域名中（如developer.mozilla.org）。</p>
+<p><code>Path</code> 标识指定了主机下的哪些路径可以接受 Cookie<br>例如，设置 Path=/docs，则以下地址都会匹配：</p>
+<ul>
+<li>/docs</li>
+<li>/docs/Web/</li>
+<li>/docs/Web/HTTP</li>
+</ul>
+<h3 id="JavaScript访问-Cookie"><a href="#JavaScript访问-Cookie" class="headerlink" title="JavaScript访问 Cookie"></a>JavaScript访问 Cookie</h3><p>JavaScript通过 {{domxref("Document.cookie")}} 属性可创建新的 Cookie，也可通过该属性访问非HttpOnly标记的Cookie。</p>
+<pre><code>document.cookie = &quot;yummy_cookie=choco&quot;; 
+document.cookie = &quot;tasty_cookie=strawberry&quot;; 
+console.log(document.cookie); 
+// logs &quot;yummy_cookie=choco; tasty_cookie=strawberry&quot;</code></pre><p>*通过 JavaScript 创建的 Cookie 不能包含 HttpOnly 标志。</p>
+<hr>
+<h2 id="HTTP访问控制（CORS）"><a href="#HTTP访问控制（CORS）" class="headerlink" title="HTTP访问控制（CORS）"></a>HTTP访问控制（CORS）</h2><p>跨域资源共享(CORS)源于浏览器端的<strong>同源政策</strong>限制所来。</p>
+<blockquote>
+<p><strong>同源政策</strong>限制了从一个源加载的文档或脚本如何与来自另一个源的资源进行交互。这是一个用于隔离潜在恶意文件的重要安全机制。</p>
+</blockquote>
+<p>只有当<strong>协议</strong>、<strong>端口</strong>、<strong>域名</strong>都相同的页面才是<strong>同源</strong>，缺一不可。</p>
+<h3 id="CORS概念"><a href="#CORS概念" class="headerlink" title="CORS概念"></a>CORS概念</h3><p>支持CORS的浏览器一旦发现ajax请求跨域，会对请求做出处理，对于实现CORS解控的服务器会接受请求，并做出回应。<br>当发出的请求为“非简单请求”时，浏览器会先发出OPTIONS的“预检请求”，验证是否是服务器的允许源。</p>
+<h3 id="简单请求与非简单请求"><a href="#简单请求与非简单请求" class="headerlink" title="简单请求与非简单请求"></a>简单请求与非简单请求</h3><p>简单请求满足以下特征：</p>
+<ul>
+<li>使用下列方法之一：<ul>
+<li>GET</li>
+<li>HEAD</li>
+<li>POST</li>
+</ul>
+</li>
+<li>除了被用户代理自动设置的首部字段（例如 Connection ，User-Agent）和在 Fetch 规范中定义为 禁用首部名称 的其他首部，允许人为设置的字段为 Fetch 规范定义的 对 CORS 安全的首部字段集合。该集合为：<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Content-Type （需要注意额外的限制）</li>
+<li>DPR</li>
+<li>Downlink</li>
+<li>Save-Data</li>
+<li>Viewport-Width</li>
+<li>Width</li>
+</ul>
+</li>
+<li>Content-Type 的值仅限于下列三者之一：<ul>
+<li>text/plain</li>
+<li>multipart/form-data</li>
+<li>application/x-www-form-urlencoded</li>
+</ul>
+</li>
+<li>请求中的任意XMLHttpRequestUpload 对象均没有注册任何事件监听器；XMLHttpRequestUpload 对象可以使用 XMLHttpRequest.upload 属性访问。</li>
+<li>请求中没有使用 ReadableStream 对象。</li>
+</ul>
+<p><strong>不满足以上特征的为“非简单请求”</strong></p>
+<br/>
+
+<h3 id="请求流程"><a href="#请求流程" class="headerlink" title="请求流程"></a>请求流程</h3><h4 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h4><p>浏览器判断跨域为简单请求时候，会在Request Header 中添加Origin（协议+域名+端口）字段，它表示我们的请求源当 CORS 接受到此请求后，会判断 Origin 是否在允许源内，如果验证通过，服务端会在 Response Header 添加 Access-Control-Allow-Origin 等字段发送给浏览器，浏览器接受到后会进行同源判断：判断自己是否在 Access-Control-Allow-Origin 允许源中，如果不存在，抛出同源检测异常。</p>
+<h4 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h4><p>非简单请求时候，浏览器先发出 OPTIONS“预检请求”，CORS 服务器收到后对“预检请求”进行处理，对 Response Header 添加验证字段，客户端接受到预检请求的返回值进行一次请求预判断，验证通过后，发起主请求，主请求与简单请求一致。</p>
+<hr>
+<h2 id="后感"><a href="#后感" class="headerlink" title="后感"></a>后感</h2><p>此文章是开始学习前端之前的基础了解，有很多问题还是没有理解，没有遇到具体的问题，还不知道以后会在哪里用到这些知识。</p>
+<p>但是HTTP是学习前端的基础，了解传输结构能够使我们更好的理解网站运行机制，更快速的解决底层问题。</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">无欲</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/posts/46667/">http://yoursite.com/posts/46667/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com" target="_blank">Cany--blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 无欲</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><meta name="generator" content="Hexo 4.2.0"></head></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/haruto.model.json"},"display":{"position":"right","width":120,"height":260},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
