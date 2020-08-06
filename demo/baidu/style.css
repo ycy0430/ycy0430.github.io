@@ -1,0 +1,657 @@
+/* 公共样式 */
+
+@font-face {
+    font-family: 'iconfont';
+    src: url('font/iconfont.eot');
+    src: url('font/iconfont.eot?#iefix') format('embedded-opentype'), url('font/iconfont.woff2') format('woff2'), url('font/iconfont.woff') format('woff'), url('iconfont.ttf') format('truetype'), url('font/iconfont.svg#iconfont') format('svg');
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "PingFang SC", Arial, "Microsoft YaHei", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+a:hover {
+    color: #315efb;
+}
+
+li {
+    list-style: none;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    position: relative;
+    min-width: 1250px;
+    min-height: 600px;
+}
+
+
+/* 双伪元素清除浮动 */
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+/* 头部样式star */
+
+.header {
+    position: absolute;
+    font-size: 13px;
+    height: 60px;
+    width: 100%;
+    line-height: 23px;
+    text-align: center;
+    z-index: 99;
+}
+
+.hd-l {
+    float: left;
+    margin-left: 24px;
+}
+
+.hd-l ul li {
+    position: relative;
+    float: left;
+    margin-right: 31px;
+    margin-top: 19px;
+    height: 30px;
+}
+
+
+/* 更多展示块样式 */
+
+.more-box {
+    /* display: block; */
+    display: none;
+    position: absolute;
+    width: 308px;
+    height: 225px;
+    background-color: #fff;
+    top: 30px;
+    left: -269px;
+    box-shadow: rgba(0, 0, 0, .15) 0px 2px 10px 0px;
+    border-radius: 12px;
+    padding-left: 4px;
+    padding-top: 20px;
+    z-index: 999;
+}
+
+.more:hover .more-box {
+    display: block;
+}
+
+.more-box ul li {
+    margin: 0;
+    float: left;
+    width: 75px;
+    height: 70px;
+}
+
+.more-box ul li img {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin: 0 auto;
+    border: 1px solid rgba(0, 0, 0, .03);
+    border-radius: 12px;
+}
+
+.more-box ul li p {
+    display: block;
+    line-height: 30px;
+    color: #222;
+    font-size: 13px;
+    margin: 0 auto;
+}
+
+.more-box ul li a:hover p {
+    color: #315efb;
+}
+
+.more-box h4 {
+    position: absolute;
+    font-weight: 400;
+    left: 97px;
+    bottom: 20px;
+}
+
+.more-box a {
+    color: #9195A3;
+    font-size: 13px;
+}
+
+.more-box a:hover {
+    color: #315efb;
+}
+
+.hd-r {
+    float: right;
+    margin-right: 24px;
+}
+
+.hd-r ul li {
+    position: relative;
+    float: left;
+    height: 30px;
+    margin-top: 19px;
+    margin-left: 32px;
+}
+
+.red {
+    color: #F63051;
+}
+
+.set:hover .set-box {
+    display: block;
+}
+
+
+/* 设置按钮下拉页面 */
+
+.set-box {
+    position: absolute;
+    display: none;
+    width: 84px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 10px 0px;
+    border-radius: 12px;
+    top: 30px;
+    right: -30px;
+    padding: 10px 0;
+}
+
+.set-box ul li {
+    margin: 0;
+    width: 100%;
+}
+
+.set-box ul li a {
+    display: block;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+    margin: 2px auto;
+    color: #333;
+}
+
+.set-box ul li a:hover {
+    color: #4662d9;
+}
+
+.login {
+    line-height: 24px;
+    float: left;
+    width: 48px;
+    height: 24px;
+    color: #fff;
+    border-radius: 6px;
+    background-color: #4e71f2;
+    font-size: 13px;
+    margin-top: -1px;
+}
+
+.login:hover {
+    color: #fff;
+}
+
+
+/* 头部样式end */
+
+
+/* 主体样式star */
+
+.main {
+    position: relative;
+    height: 40%;
+    min-height: 314px;
+    max-height: 510px;
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.logo {
+    position: relative;
+    width: 270px;
+    height: 60%;
+    min-height: 185px;
+    max-height: 310px;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    position: absolute;
+    bottom: 15px;
+}
+
+.logo a {
+    display: block;
+    font-size: 0;
+    width: 270px;
+    height: 129px;
+    background: url(images/logo.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.fm {
+    position: relative;
+    display: block;
+    width: 655px;
+    margin: 0 auto;
+}
+
+.ser-text {
+    position: relative;
+    font-size: 16px;
+    float: left;
+    width: 546px;
+    height: 44px;
+    padding-left: 15px;
+    border: #c4c7ce solid 2px;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+    outline: 0;
+    /*选中无效果*/
+}
+
+.ser-text:hover {
+    border-color: #a7aab5;
+}
+
+.ser-text:focus {
+    border-color: #4E71F2;
+}
+
+.ser-btn {
+    font-size: 17px;
+    float: left;
+    width: 108px;
+    height: 44px;
+    cursor: pointer;
+    color: #fff;
+    border: #4e6ef2;
+    border-radius: 0 10px 10px 0;
+    outline: 0;
+    background-color: #4e6ef2;
+    line-height: 45px;
+    text-align: center;
+}
+
+.ser-btn:hover {
+    background-color: #4662d9;
+}
+
+
+/* input不支持伪元素，尝试after失败 */
+
+.fm span {
+    position: absolute;
+    width: 24px;
+    height: 20px;
+    cursor: pointer;
+    background: #fff url(images/photo.png) no-repeat;
+}
+
+span.photo {
+    top: 13px;
+    right: 125px;
+    background-position: 0 -51px;
+}
+
+span.photo::after {
+    display: none;
+    content: "按图片搜索";
+    top: 31px;
+    right: -10px;
+    position: absolute;
+    height: 32px;
+    width: 94px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    color: #626675;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
+}
+
+.photo:hover {
+    background-position: 0 -75px;
+}
+
+span.photo:hover::after {
+    display: block;
+}
+
+span.mic {
+    top: 10px;
+    right: 160px;
+    background-position: 0 0;
+}
+
+
+/* after伪元素 创建提示文字框*/
+
+span.mic::after {
+    content: "按语音搜索";
+    display: none;
+    top: 34px;
+    right: -10px;
+    position: absolute;
+    height: 32px;
+    width: 94px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 32px;
+    font-size: 14px;
+    color: #626675;
+    background-color: #fff;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, .1);
+}
+
+
+/* 因为after也属于其子元素，所以可以直接用 */
+
+span.mic:hover::after {
+    display: block;
+}
+
+
+/* 精灵图技术 */
+
+.mic:hover {
+    background-position: 0 -24px;
+}
+
+.hot {
+    width: 654px;
+    margin: 0 auto;
+}
+
+.hot-hd {
+    display: block;
+    width: 654px;
+    height: 24px;
+    line-height: 24px;
+    margin-top: 45px;
+    margin-bottom: 15px;
+}
+
+.hot-hd-l {
+    font-size: 14px;
+    float: left;
+    color: #222;
+    cursor: pointer;
+}
+
+.hot-hd-r {
+    font-size: 13px;
+    float: right;
+    color: #9195a3;
+    cursor: pointer;
+}
+
+
+/* 引入图标字体 */
+
+.hot-hd-r em {
+    font-family: "iconfont";
+    line-height: 13px;
+    font-size: 15px;
+    font-style: normal;
+    margin-right: 4px;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.hot-hd-r:hover {
+    color: #315efb;
+}
+
+.hot-bd {
+    width: 654px;
+}
+
+.hot-bd ul li {
+    position: relative;
+    float: left;
+    width: 268px;
+    height: 34px;
+    list-style: none;
+    cursor: pointer;
+    color: #222;
+    font-size: 14px;
+}
+
+.hot-bd ul li:hover {
+    color: #315efb;
+}
+
+
+/* 选择单双数子元素在两边对齐 */
+
+.hot-bd ul li:nth-child(2n+1) {
+    margin-right: 59px;
+}
+
+.hot-bd ul li:nth-child(2n) {
+    margin-left: 59px;
+}
+
+
+/* 省去了html里标记多个类 */
+
+
+/* .l {
+    margin-right: 59px;
+}
+
+.r {
+    margin-left: 59px;
+} */
+
+
+/* 热点前序号 */
+
+.hot-bd ul li em {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    font-size: 12px;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-style: normal;
+    margin-right: 8px;
+}
+
+
+/* .hot-bd ul li:nth-child(1) {
+    background: url(images/top1.png) no-repeat;
+}
+
+.hot-bd ul li:nth-child(3) {
+    background: url(images/top2.png) no-repeat;
+}
+
+.hot-bd ul li:nth-child(5) {
+    background: url(images/top3.png) no-repeat;
+} */
+
+li .top1 {
+    background-image: url(images/top1.png);
+}
+
+li .top2 {
+    background-image: url(images/top2.png);
+}
+
+li .top3 {
+    background-image: url(images/top3.png);
+}
+
+.hot-bd ul li .top4 {
+    background-image: url(images/top4.png);
+    color: #9195a3;
+}
+
+.hot-icon {
+    margin-left: 3px;
+    width: 16px;
+    height: 16px;
+    background: url(images/hot.png) no-repeat;
+    vertical-align: middle;
+    /* 靠上对齐 */
+}
+
+.new-icon {
+    margin-left: 3px;
+    width: 16px;
+    height: 16px;
+    background: url(images/new.png) no-repeat;
+    vertical-align: middle;
+}
+
+
+/* 主体样式end */
+
+
+/* 二维码样式 */
+
+.qrcode {
+    position: fixed;
+    right: 24px;
+    bottom: 64px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #FBFBFB;
+    text-align: center;
+    line-height: 56px;
+    cursor: pointer;
+}
+
+.qrcode:hover {
+    box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .1);
+}
+
+.qrcode .icon {
+    /* display: inline-block; */
+    width: 24px;
+    height: 24px;
+}
+
+.qrcode:hover .icon {
+    content: url(images/qrcode-hover.png);
+}
+
+
+/* 父子元素才能用css */
+
+.qrcode:hover .qrcode-box {
+    display: block;
+}
+
+.qrcode-box {
+    position: absolute;
+    display: none;
+    width: 294px;
+    height: 111px;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    bottom: 0;
+    right: 55px;
+    padding: 17px;
+}
+
+.qrcode-box h2 {
+    font-family: 'iconfont';
+    margin-top: 19px;
+    font-size: 19px;
+    font-weight: 400;
+    color: #333;
+    float: left;
+    line-height: 20px;
+}
+
+.qrcode-box h3 {
+    float: left;
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 14px;
+    color: #9195a3;
+    line-height: 15px;
+}
+
+.qrcode-box img {
+    width: 77px;
+    height: 77px;
+    float: right;
+}
+
+
+/* 页脚 */
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    background-color: #fbfbfb;
+    line-height: 40px;
+    font-size: 12px;
+}
+
+.f-l {
+    float: left;
+    padding-left: 24px;
+}
+
+.f-r {
+    float: right;
+    padding-right: 24px;
+}
+
+.f-l a {
+    float: left;
+    color: #9195a3;
+    margin-right: 20px;
+}
+
+footer a:hover {
+    color: #222;
+}
+
+.f-r p {
+    float: left;
+    margin-left: 20px;
+    color: #bbb;
+}
+
+.p {
+    margin-left: 0;
+    color: #bbb;
+}
