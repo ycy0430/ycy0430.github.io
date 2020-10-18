@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 1440px;
+            height: 4800px;
+            position: relative;
+        }
+        
+        .header {
+            width: 100%;
+            height: 20%;
+            position: fixed;
+            background: url("img/header.png") no-repeat;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin-top: 15px;
+            background: url("img/main.png") no-repeat;
+            z-index: 0;
+        }
+        
+        .footer {
+            height: 5%;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background: url("img/footer.png") no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="header"></div>
+        <div class="main"></div>
+        <div class="footer"></div>
+    </div>
+</body>
+
+</html>
